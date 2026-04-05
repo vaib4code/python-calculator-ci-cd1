@@ -3,6 +3,7 @@ Library    Process
 
 *** Variables ***
 ${PYTHON}    C:/Users/vaib0/AppData/Local/Programs/Python/Python314/python.exe
+${ERROR_MESSAGE}    This calculator only supports basic calculator functions as of now. Please enter at least 2 numbers to continue using the calculator.
 
 *** Test Cases ***
 Verify Calculator File Exists
