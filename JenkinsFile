@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Verify Python') {
+            steps {
+                bat 'python --version'
+            }
+        }
+
+        stage('Install Robot Framework') {
+            steps {
+                bat 'pip install robotframework'
+            }
+        }
+
+        stage('Run Robot Tests') {
+            steps {
+                bat 'robot tests'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'tests/**, log.html, report.html, output.xml', allowEmptyArchive: true
+        }
+        success {
+            echo 'Build passed. Smoke tests completed successfully.'
+        }
+        failure {
+            echo 'Build failed. Check console output and Robot reports.'
+        }
+    }
+}
