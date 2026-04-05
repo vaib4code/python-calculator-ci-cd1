@@ -27,7 +27,14 @@ def divide_numbers(numbers):
 
 
 def get_numbers():
-    count = int(input("How many integers do you want to enter? "))
+    while True:
+        count = int(input("How many integers do you want to enter? "))
+
+        if count < 2:
+            print("This calculator only supports basic calculator functions as of now. Please enter at least 2 numbers to continue using the calculator.")
+        else:
+            break
+
     numbers = []
 
     for i in range(count):
