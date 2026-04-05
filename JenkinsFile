@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PYTHON = 'C:\Users\vaib0\AppData\Local\Programs\Python\Python314\python.exe'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,19 +14,19 @@ pipeline {
 
         stage('Verify Python') {
             steps {
-                bat 'python --version'
+                bat '"%PYTHON%" --version'
             }
         }
 
         stage('Install Robot Framework') {
             steps {
-                bat 'pip install robotframework'
+                bat '"%PYTHON%" -m pip install robotframework'
             }
         }
 
         stage('Run Robot Tests') {
             steps {
-                bat 'robot tests'
+                bat '"%PYTHON%" -m robot tests'
             }
         }
     }
