@@ -28,20 +28,33 @@ def divide_numbers(numbers):
 
 def get_numbers():
     while True:
-        count = int(input("How many integers do you want to enter? "))
+        try:
+            count = int(input("How many integers do you want to enter? "))
 
-        if count < 2:
-            print("This calculator only supports basic calculator functions as of now. Please enter at least 2 numbers to continue using the calculator.")
-        else:
-            break
+            if count < 0:
+                print("Only positive integer values are allowed.")
+                continue
 
-    numbers = []
+            if count < 2:
+                print("This calculator only supports basic calculator functions as of now. Please enter at least 2 numbers to continue using the calculator.")
+                continue
 
-    for i in range(count):
-        num = int(input(f"Enter integer {i + 1}: "))
-        numbers.append(num)
+            numbers = []
 
-    return numbers
+            for i in range(count):
+                num = int(input(f"Enter integer {i + 1}: "))
+
+                if num < 0:
+                    print("Only positive integer values are allowed.")
+                    break
+
+                numbers.append(num)
+
+            else:
+                return numbers
+
+        except ValueError:
+            print("Only positive integer values are allowed.")
 
 
 def main():
